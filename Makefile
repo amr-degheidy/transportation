@@ -1,6 +1,5 @@
 .DEFAULT_GOAL = help
 
-
 # Variables
 SAIL = ./vendor/bin/sail
 PHP = $(SAIL) php
