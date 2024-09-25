@@ -1,0 +1,35 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, pdo_pgsql, gd, redis, xdebug
+        tools: composer:v2, phpunit
+      
+    - name: Start Docker and Laravel Sail
+      run: |
+        composer install
+        ./vendor/bin/sail up -d
+    
+    - name: Install NPM dependencies for Vue 3
+      run: npm install
+    
+    - name: Run migrations
+      run: ./vendor/bin/sail artisan migrate
+    
+    - name: Run tests
+      run: ./vendor/bin/sail artisan test
