@@ -9,7 +9,7 @@ NPM = $(SAIL) npm
 
 sail-cmd: ## for sail commands
 	@echo 'Run Sail Command : ' . $(filter-out $@,$(MAKECMDGOALS))
-	$(COMPOSER) $(filter-out $@,$(MAKECMDGOALS))
+	$(SAIL) $(filter-out $@,$(MAKECMDGOALS))
 
 composer-cmd: ## for composer commands
 	@echo 'Run Composer Command : ' . $(filter-out $@,$(MAKECMDGOALS))
