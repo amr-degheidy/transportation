@@ -22,7 +22,6 @@ axiosClient.interceptors.response.use(response => {
         const user = userStore();
 
         user.setToken(null)
-        user.setData(null)
         router.push({ name: 'Login'})
     }
     throw error;

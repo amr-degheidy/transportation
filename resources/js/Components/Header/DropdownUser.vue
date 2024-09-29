@@ -3,6 +3,7 @@ import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 
 import { userStore } from "../../store/userStore.js";
+import router from "../../router/index.js";
 const user = userStore();
 
 const target = ref(null)
@@ -11,6 +12,14 @@ const dropdownOpen = ref(false)
 onClickOutside(target, () => {
   dropdownOpen.value = false
 })
+
+function logout(){
+    user.logout().then(()=>{
+        router.push({ name: 'Login'})
+
+    })
+
+}
 </script>
 
 <template>
@@ -21,7 +30,7 @@ onClickOutside(target, () => {
       @click.prevent="dropdownOpen = !dropdownOpen"
     >
       <span class="hidden text-right lg:block">
-        <span class="block text-sm font-medium text-black dark:text-white">{{ user.getName() }}</span>
+        <span class="block text-sm font-medium text-black dark:text-white">{{ user.getName }}</span>
 
       </span>
 
@@ -54,6 +63,7 @@ onClickOutside(target, () => {
     >
 
       <button
+          @click="logout"
         class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <svg

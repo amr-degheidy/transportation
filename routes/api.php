@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::group(['prefix'=>'dashboard'], function () {
-    Route::post('/login', [AuthController::class, 'login']);
+Route::group(['prefix'=>'dashboard' ,'as' => 'dashboard.'], function () {
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware(['auth:admin'])->group(function () {
-        Route::get('/',[DashboardController::class, 'index']);
+        Route::get('/',[DashboardController::class, 'index'])->name('index');
 
-        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 });
 

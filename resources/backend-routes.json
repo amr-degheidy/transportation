@@ -1,0 +1,5 @@
+{
+    "dashboard.login": "\/dashboard\/login",
+    "dashboard.index": "\/dashboard",
+    "dashboard.logout": "\/dashboard\/logout"
+}

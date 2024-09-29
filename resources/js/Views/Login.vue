@@ -50,7 +50,7 @@ const login = () =>{
             router.push({ name: 'Dashboard'})
         })
         .catch((resposne)=>{
-            console.log('error message in login ', resposne.data)
+            // @todo add error in logsgin
         })
 }
 </script>
